@@ -1,0 +1,23 @@
+services:
+  getProducts:
+    build: .
+    image: getProducts
+    container_name: getProducts
+    hostname: getProducts
+    restart: always
+    volumes:
+      - ./app/getProducts:/app
+    command: npm run dev
+    ports:
+      - 5001:5000
+  db_products:
+    image: postgres
+    restart: always
+    container_name: db_products
+    hostname: db_products
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db_products
+    ports:
+      - "5432:5432"

@@ -1,0 +1,30 @@
+{
+  "name": "ecommerce-services",
+  "version": "1.0.0",
+  "description": "Micro services backend api to an ecommerce platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prisma:generate": "npx prisma generate",
+    "prisma:dev": "npx prisma migrate dev",
+    "docker:products": "docker compose up -d db_products",
+    "dev": "npx ts-node app/services/getProducts.ts"
+  },
+  "keywords": [
+    "micro-services"
+  ],
+  "author": "Amanda Prates Caetano",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "nodemon": "^3.1.7",
+    "prisma": "^6.6.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
+  }
+}

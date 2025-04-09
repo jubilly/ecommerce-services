@@ -1,0 +1,1 @@
+export { repository as productRepository } from './product/product.repository';

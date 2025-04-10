@@ -1,5 +1,5 @@
 import { Cart } from "@prisma/client";
-import appDatabase from "~/database";
+import appDatabase from "../database";
 
 
 export const create = async (data: Cart) => {

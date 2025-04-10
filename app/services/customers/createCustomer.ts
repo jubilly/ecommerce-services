@@ -1,8 +1,8 @@
 import server from "~/server";
 import { Prisma } from "@prisma/client";
 import { randomUUID } from "node:crypto";
-import appDatabase from "~/database";
-import { customerRepository } from "~/repositories";
+import appDatabase from "../../database";
+import { customerRepository } from "../../repositories";
 
 const PORT = 5000;
 const alive = true;

@@ -1,5 +1,5 @@
 import { CartProducts } from "@prisma/client";
-import appDatabase from "~/database";
+import appDatabase from "../database";
 
 const create = async (
     productId: string, 

@@ -7,8 +7,29 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prisma:generate": "npx prisma generate",
     "prisma:dev": "npx prisma migrate dev",
-    "docker:products": "docker compose up -d db_products",
-    "dev": "npx ts-node app/services/getProducts.ts"
+    "docker:db": "cd ./dockerfiles && docker compose up -d db_ecommerce",
+    "docker:service:getproduct": "docker compose up -d service_get_products",
+    "docker:service:createproduct": "cd ./dockerfiles && docker compose up -d service_createproduct",
+    "docker:service:getcustomer": "cd ./dockerfiles && docker compose up -d service_getcustomer",
+    "docker:service:createcustomer": "cd ./dockerfiles && docker compose up -d service_createcustomer",
+    "docker:service:getcart": "cd ./dockerfiles && docker compose up -d service_getcart",
+    "docker:service:createcart": "cd ./dockerfiles && docker compose up -d service_createcart",
+    "dev": "npx ts-node app/services/getProducts.ts",
+    "build": "tsc --project tsconfig.json",
+    "start": "node dist/index.js",
+    "server:getP": "nodemon --exec tsx app/services/products/getProducts.ts",
+    "server:createP": "nodemon --exec tsx app/services/products/createProducts.ts",
+    "server:getC": "nodemon --exec tsx app/services/customers/getCustomers.ts",
+    "server:createC": "nodemon --exec tsx app/services/customers/createCustomer.ts",
+    "server:getCart": "nodemon --exec tsx app/services/cart/getCart.ts",
+    "server:createCart": "nodemon --exec tsx app/services/cart/createCart.ts"
+  },
+  "nodemonConfig": {
+    "ignore": ["**/test/**", "**/docs/**"],
+    "delay": 2500,
+    "watch": [
+      "app"
+    ]
   },
   "keywords": [
     "micro-services"
@@ -17,14 +38,19 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.6.0",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
     "@types/node": "^22.14.0",
     "nodemon": "^3.1.7",
     "prisma": "^6.6.0",
-    "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "tsx": "^4.19.3"
   }
 }

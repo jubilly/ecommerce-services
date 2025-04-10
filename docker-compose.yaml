@@ -1,23 +1,23 @@
 services:
-  getProducts:
+  service_get_products:
     build: .
-    image: getProducts
-    container_name: getProducts
-    hostname: getProducts
-    restart: always
+    image: service_get_products
+    container_name: service_get_products
+    hostname: service_get_products
+    tty: true
     volumes:
-      - ./app/getProducts:/app
-    command: npm run dev
+      - ./app/services/products/getProducts:/app/services/products
+    command: npm run server:getP
     ports:
       - 5001:5000
-  db_products:
+  db_ecommerce:
     image: postgres
     restart: always
-    container_name: db_products
-    hostname: db_products
+    container_name: db_ecommerce
+    hostname: db_ecommerce
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: db_products
+      POSTGRES_DB: db_ecommerce
     ports:
-      - "5432:5432"
+      - "5438:5432"

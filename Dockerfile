@@ -1,14 +1,11 @@
-FROM node:18.16.0-alpine3.17
+# build
+FROM node:23-alpine3.20
 
-RUN mkdir -p /app
+ENV NODE_ENV=build
 
+RUN mkdir /app
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY app/ .
-
-EXPOSE 3000
-
-CMD [ "node", "app.js" ]
+COPY package.json ./
+COPY tsconfig.json ./
+COPY ./prisma ./prisma
+COPY ./app ./

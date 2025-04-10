@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -15,9 +14,43 @@ datasource db {
 }
 
 model Products {
-  id               String   @unique @db.Uuid
+  id               String    @id @default(uuid()) @db.Uuid
+  storeId          String   @db.VarChar(32)  
   category         String   @db.VarChar(255)
   name             String   @db.VarChar(255)
   price            Decimal  @db.Decimal()
   promotionalPrice Decimal? @db.Decimal()
+}
+
+model Customer {
+  id        String   @id @default(uuid()) @db.Uuid
+  storeId   String   @db.VarChar(32)
+  name      String   @db.VarChar(255)
+  email     String   @db.VarChar(255)
+  phone     String   @db.VarChar(255)
+  address   String   @db.VarChar(255)
+  city      String   @db.VarChar(255)
+  state     String   @db.VarChar(255)
+  country   String   @db.VarChar(255)
+  zipCode   String   @db.VarChar(10)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+}
+
+model Cart {
+  id        String   @id @default(uuid()) @db.Uuid
+  storeId   String   @db.VarChar(36)
+  customerId String   @db.VarChar(36)
+  total     Decimal  @db.Decimal()
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  products CartProducts[]
+}
+
+model CartProducts {
+  id        String   @id @default(uuid()) @db.Uuid
+  productId String   @db.VarChar(36)
+  name      String   @db.VarChar(255)
+  quantity  Int      @default(1)
+  cartId    String    @db.Uuid 
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  createdAt DateTime @default(now()) @db.Timestamp(6)
 }

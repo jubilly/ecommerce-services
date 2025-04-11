@@ -6,8 +6,8 @@ const SERVICE_CUSTOMER_ISALIVE_URL = `${BASE_URL}:5003/healthcheck`;
 const SERVICE_CREATE_USTOMER_URL = `${BASE_URL}:5004/customers`;
 const SERVICE_CREATE_USTOMER_ISALIVE_URL = `${BASE_URL}:5004/healthcheck`;
 
-const SERVICE_CART_URL = `${BASE_URL}:5005/cart`;
-const SERVICE_CART_ISALIVE_URL = `${BASE_URL}:5005/healthcheck`;
+const SERVICE_CART_URL = `${BASE_URL}:5099/cart`;
+const SERVICE_CART_ISALIVE_URL = `${BASE_URL}:5099/healthcheck`;
 
 const SERVICE_CREATE_CART_URL = `${BASE_URL}:5006/cart`;
 const SERVICE_CREATE_CART_ISALIVE_URL = `${BASE_URL}:5006/healthcheck`;
@@ -29,6 +29,18 @@ function toggleSection(selector) {
   document.querySelector(selector).classList.remove("no-show");
 }
 
+function formatJson (value = "") {
+	let parsed;
+	try {
+		parsed = JSON.parse(value);
+	} catch (error) {
+		parsed = value;
+	}
+	const pretty = JSON.stringify(parsed, null, 4);
+
+	return pretty === "" || pretty === "{}" ? "N/A" : pretty;
+};
+
 function renderData(response, targetOutputSelector) {
   const container = targetOutputSelector;
   container.innerHTML = "";
@@ -38,9 +50,17 @@ function renderData(response, targetOutputSelector) {
     card.className = "card";
 
     for (const key in item) {
-      const p = document.createElement("p");
-      p.innerHTML = `<strong>${key}:</strong> ${item[key]}`;
-      card.appendChild(p);
+      const field = document.createElement("div");
+      field.className = "field";
+
+      if (typeof item[key] === "object") {
+        field.innerHTML = `<strong>${key}:</strong> <pre>${formatJson(
+          item[key]
+        )}</pre>`;
+      } else {
+        field.innerHTML = `<strong>${key}:</strong> <span>${item[key]}</span>`;
+      }
+      card.appendChild(field);
     }
 
     container.appendChild(card);

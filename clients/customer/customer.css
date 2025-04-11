@@ -88,6 +88,8 @@ body {
     width: 100%;
 }
 
+.cta__addToCart[disabled] {background: #ccc;}
+
 .open-cart-btn {
     margin: 20px;
     padding: 10px 20px;
@@ -162,4 +164,8 @@ body {
 .totalCart {
     text-align: center;
     margin: 10px;
+}
+
+.empty-state {
+    margin-top: 80px;
 }

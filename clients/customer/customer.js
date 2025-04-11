@@ -208,9 +208,9 @@
   function emptySate() {
     return `
             <div class="empty-state">
-                <h1>
+                <h2>
                     Que pena, nossos produtos acabaram no nosso queimão de estoques! Você perdeu... Fique de olho nas nossas redes sociais para mais promoções @amandapratesc
-                </h1>
+                </h2>
             </div>
         `;
   }

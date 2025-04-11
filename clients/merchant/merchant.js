@@ -3,11 +3,8 @@ const BASE_URL = "http://localhost";
 const SERVICE_CUSTOMER_URL = `${BASE_URL}:5003/customers`;
 const SERVICE_CUSTOMER_ISALIVE_URL = `${BASE_URL}:5003/healthcheck`;
 
-const SERVICE_CREATE_USTOMER_URL = `${BASE_URL}:5004/customers`;
-const SERVICE_CREATE_USTOMER_ISALIVE_URL = `${BASE_URL}:5004/healthcheck`;
-
-const SERVICE_CART_URL = `${BASE_URL}:5099/cart`;
-const SERVICE_CART_ISALIVE_URL = `${BASE_URL}:5099/healthcheck`;
+const SERVICE_CART_URL = `${BASE_URL}:5005/cart`;
+const SERVICE_CART_ISALIVE_URL = `${BASE_URL}:5005/healthcheck`;
 
 const SERVICE_CREATE_CART_URL = `${BASE_URL}:5006/cart`;
 const SERVICE_CREATE_CART_ISALIVE_URL = `${BASE_URL}:5006/healthcheck`;
@@ -17,6 +14,29 @@ const SERVICE_PRODUCT_ISALIVE = `${BASE_URL}:5001/healthcheck`;
 
 const SERVICE_CREATE_PRODUCT = `${BASE_URL}:5002/products`;
 const SERVICE_CREATE_PRODUCT_ISALIVE = `${BASE_URL}:5002/healthcheck`;
+
+const isAliveGetCustomer = async () => {
+  const response = await fetch(SERVICE_CUSTOMER_ISALIVE_URL);
+  const data = await response.json();
+  return data.status === "ok";
+}
+
+const isAliveGetCart = async () => {
+  const response = await fetch(SERVICE_CART_ISALIVE_URL);
+  const data = await response.json();
+  return data.status === "ok";
+}
+const isAliveGetProduct = async () => {
+  const response = await fetch(SERVICE_PRODUCT_ISALIVE);
+  const data = await response.json();
+  return data.status === "ok";
+}
+
+const isAliveCreateProduct = async () => {
+  const response = await fetch(SERVICE_CREATE_PRODUCT_ISALIVE);
+  const data = await response.json();
+  return data.status === "ok";
+}
 
 function hideAllSections() {
   document.querySelectorAll(".panel").forEach((section) => {
@@ -103,16 +123,11 @@ async function handleSubmitProductForm(event) {
   };
 
   try {
-    const createProductServiceIsAlive = await fetch(
-      SERVICE_CREATE_PRODUCT_ISALIVE
-    );
-    const responseCreateProductIsAlive =
-      await createProductServiceIsAlive.json();
-    if (responseCreateProductIsAlive.status !== "ok") {
-      return {
-        message: "Serviço de criar produtos indisponível",
-      };
+    const isAlive = await isAliveCreateProduct();
+    if (!isAlive) {
+      return;
     }
+
     const response = await fetch(SERVICE_CREATE_PRODUCT, {
       method: "POST",
       headers: {
@@ -146,13 +161,9 @@ function handlePostProducts() {
 async function handleGetProducts() {
   toggleSection(".get-products");
 
-  const productServiceIsAlive = await fetch(SERVICE_PRODUCT_ISALIVE);
-  const responseProductIsAlive = await productServiceIsAlive.json();
-
-  if (responseProductIsAlive.status !== "ok") {
-    return {
-      message: "Serviço de buscar produtos indisponível",
-    };
+  const isAlive = await isAliveGetProduct();
+  if (!isAlive) {
+    return;
   }
 
   const response = await fetchData(SERVICE_PRODUCT);
@@ -164,13 +175,9 @@ async function handleGetProducts() {
 async function handleGetCustomers() {
   toggleSection(".get-customers");
 
-  const customerServiceIsAlive = await fetch(SERVICE_CUSTOMER_ISALIVE_URL);
-  const responseCustomerIsAlive = await customerServiceIsAlive.json();
-
-  if (responseCustomerIsAlive.status !== "ok") {
-    return {
-      message: "Erro ao listar os clientes",
-    };
+  const isAlive = await isAliveGetCustomer();
+  if (!isAlive) {
+    return;
   }
 
   const response = await fetchData(SERVICE_CUSTOMER_URL);
@@ -181,17 +188,12 @@ async function handleGetCustomers() {
 async function handleGetCart() {
   toggleSection(".get-carts");
 
-  const cartServiceIsAlive = await fetch(SERVICE_CART_ISALIVE_URL);
-  const responseCartIsAlive = await cartServiceIsAlive.json();
-
-  if (responseCartIsAlive.status !== "ok") {
-    return {
-      message: "Erro ao listar os carrinhos",
-    };
+  const isAlive = await isAliveGetCart();
+  if (!isAlive) {
+    return;
   }
 
   const response = await fetchData(`${SERVICE_CART_URL}?storeId=85274196310`);
-  console.log("response", response);
   const resultContainer = document.querySelector(".get-carts__result");
   renderData(response, resultContainer);
 }

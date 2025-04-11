@@ -1,7 +1,7 @@
 import { cartRepository, customerRepository } from "../../repositories";
 import server from "../../server";
 
-const PORT = 5099;
+const PORT = 5000;
 const alive = true;
 
 const version = "1.0"
@@ -12,7 +12,7 @@ const info = {
 }
 
 server.listen(PORT, () => {
-	console.log(`[server] started on port ${PORT} 🚀 aa`);
+	console.log(`[server] started on port ${PORT} 🚀`);
 });
 
 server.get('/healthcheck', (request, response) => {

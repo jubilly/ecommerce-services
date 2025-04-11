@@ -32,4 +32,14 @@ Serão 5 microsserviços:
 
 			DATABASE_URL="postgresql://root:root@localhost:5438/db_ecommerce"
 
-4.
+4. No terminal na pasta raiz do projeto, inicar os serviços executando a cli
+
+			npm run docker:services
+
+5. Abrir o html dos clientes pelo Live Serve, exemplo abaixo:
+
+	- Cliente Merchant: comerciante cadastra produtos, visualiza os produtos cadastrados, visualiza os clientes e carrinhos da loja
+	- Cliente: Customer: visualiza produtos cadastrados pelo merchant realiza pedidos/carrinhos
+
+	![alt text](docs/how_to_start_client.png)
+

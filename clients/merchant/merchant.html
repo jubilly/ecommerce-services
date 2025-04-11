@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BackOffice - E-commerce</title>
+  <link rel="stylesheet" href="merchant.css" />
+</head>
+<body class="wrapper">
+  <nav class="menu">
+    <ul>
+      <li class="menu-item" data-action="post-product">Cadastrar Produtos</li>
+      <li class="menu-item" data-action="get-products">Listar Produtos</li>
+      <li class="menu-item" data-action="get-customers">Listar Clientes</li>
+      <li class="menu-item" data-action="get-carts">Listar Carrinhos</li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <section class="panel get-products no-show">
+      <h2>Todos os produtos</h2>
+      <div class="result get-products__result"></div>
+    </section>
+
+    <section class="panel get-customers no-show">
+      <h2>Todos os clientes cadastrados</h2>
+      <div class="result get-customers__result"></div>
+    </section>
+
+    <section class="panel get-carts no-show">
+      <h2>Todos os carrinhos de clientes</h2>
+      <div class="result get-carts__result"></div>
+    </section>
+
+    <section class="panel post-products no-show">
+      <h2>Cadastrar novo produto</h2>
+      <form class="product-form" action="#">
+        <input type="hidden" name="storeId" value="85274196310" />
+        <input type="text" name="name" id="name" placeholder="Nome do produto" required />
+        <input type="text" name="category" id="category" placeholder="Categoria do produto" required />
+        <input type="number" name="price" id="price" placeholder="Preço do produto" step="0.01" required />
+        <input type="number" name="promotionalPrice" id="promotionalPrice" placeholder="Preço promocional" step="0.01" />
+        <button type="submit">Cadastrar</button>
+      </form>
+      <div class="result post-products__result"></div>
+    </section>
+  </main>
+
+  <script src="merchant.js"></script>
+</body>
+</html>

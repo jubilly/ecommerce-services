@@ -1,4 +1,4 @@
-import server from "~/server";
+import server from "../../server";
 import { Prisma } from "@prisma/client";
 import { randomUUID } from "node:crypto";
 import appDatabase from "../../database";
@@ -64,14 +64,14 @@ server.post('/customers', async (request, response) =>  {
         appDatabase.$disconnect();
     
         if (!databaseCustomer) {
-					response.status(404).json({
-							status: 'Customer not found',
-					});
+			response.status(404).json({
+				status: 'Customer not found',
+			});
         }
     
         response.status(201).json({
             status: 'Customer created successfully',
-            data: body,
+            data: parsedCustomer,
         });
     } catch (error) {
         response.status(500).json({

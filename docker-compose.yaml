@@ -8,17 +8,61 @@ services:
     command: node ./build/services/products/getProducts.js
     ports:
       - 5001:5000
+    env_file:
+      - .env
   service_create_products:
     build: .
     image: service_create_products
     container_name: service_create_products
     hostname: service_create_products
     restart: always 
-    # volumes:
-    #   - ./:/app
     command: node ./build/services/products/createProducts.js
     ports:
-      - 5001:5000
+      - 5002:5000
+    env_file:
+      - .env
+  service_get_customer:
+    build: .
+    image: service_get_customer
+    container_name: service_get_customer
+    hostname: service_get_customer
+    restart: always
+    command: node ./build/services/customers/getCustomers.js
+    ports:
+      - 5003:5000
+    env_file:
+      - .env
+  service_create_customer:
+    build: .
+    image: service_create_customer
+    container_name: service_create_customer
+    hostname: service_create_customer
+    restart: always
+    command: node ./build/services/customers/createCustomer.js
+    ports:
+      - 5004:5000
+    env_file:
+      - .env
+  service_get_cart:
+    build: .
+    image: service_get_cart
+    container_name: service_get_cart
+    hostname: service_get_cart
+    restart: always
+    command: node ./build/services/cart/getCart.js
+    ports:
+      - 5005:5000
+    env_file:
+      - .env
+  service_create_cart:
+    build: .
+    image: service_create_cart
+    container_name: service_create_cart
+    hostname: service_create_cart
+    restart: always
+    command: node ./build/services/cart/createCart.js
+    ports:
+      - 5006:5000
     env_file:
       - .env
   db_ecommerce:

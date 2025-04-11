@@ -1,4 +1,4 @@
-import { customerRepository } from "~/repositories";
+import { customerRepository } from "../../repositories";
 import server from "../../server";
 
 const PORT = 5000;

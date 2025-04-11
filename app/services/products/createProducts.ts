@@ -1,4 +1,4 @@
-import server from "~/server";
+import server from "../../server";
 import { productRepository } from "../../repositories";
 import { Prisma } from "@prisma/client";
 import { randomUUID } from "node:crypto";
@@ -73,8 +73,6 @@ server.post('/products', async (request, response) =>  {
 	});
 
     try {
-        console.log('parsedProducts x', parsedProducts);
-
         const databaseProducts = await productRepository.createMany(parsedProducts);
 
         appDatabase.$disconnect();

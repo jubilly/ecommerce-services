@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+    <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+    <div class="modal" id="cartDrawer">
+        <div class="modal__content">
+          <button class="close-btn" id="closeDrawer">&times;</button>
+          <h2>Dados do Cliente</h2>
+          <form id="customerForm">
+            <input type="hidden" name="storeId" value="85274196310">
+            <input type="text" name="name" placeholder="Nome">
+            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="phone" placeholder="Telefone">
+            <input type="text" name="address" placeholder="Endereço">
+            <input type="text" name="city" placeholder="Cidade">
+            <input type="text" name="state" placeholder="Estado">
+            <input type="text" name="country" placeholder="País">
+            <input type="text" name="zipCode" placeholder="CEP">
+            <div class="productsCart" id="productsCart"></div>
+            <div class="totalCart" id="totalCart"></div>
+            <button type="submit" class="cta__addToCart">Finalizar Compra (Itens <span data-products-qtd>0</span>)</button>
+          </form>
+    
+        </div>
+      </div>
+    
+    <div class="content">
+        <div class="header">
+            <div class="header__content">
+                <h2>Loja Mega Promoções</h2>
+               <div>
+                <button class="open-cart-btn">Abrir Carrinho (Itens <span data-products-qtd>0</span>)</button>
+               </div>
+            </div>
+        </div>
+        <div class="products" data-products>
+            <span></span>
+        </div>
+    </div>
+    <script src="cart.js"></script>
+    <script src="customer.js"></script>
+</body>
+</html>

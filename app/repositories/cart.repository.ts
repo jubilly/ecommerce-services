@@ -6,6 +6,15 @@ export const create = async (data: Cart) => {
     return await appDatabase.cart.create({ data });
 };
 
+export const findByStoreId = async (storeId: string) => {
+    return await appDatabase.cart.findMany({
+        where: { storeId },
+        include: {
+            products: true
+        }
+    });
+}
+
 export const findCartByCustomerId = async (customerId: string) => {
     return await appDatabase.cart.findMany({
         where: { customerId },
@@ -18,4 +27,5 @@ export const findCartByCustomerId = async (customerId: string) => {
 export const repository = {
     create,
     findCartByCustomerId,
+    findByStoreId
 };

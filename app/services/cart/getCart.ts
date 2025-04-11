@@ -1,7 +1,7 @@
-import { cartRepository, customerRepository } from "~/repositories";
+import { cartRepository, customerRepository } from "../../repositories";
 import server from "../../server";
 
-const PORT = 5000;
+const PORT = 5099;
 const alive = true;
 
 const version = "1.0"
@@ -12,7 +12,7 @@ const info = {
 }
 
 server.listen(PORT, () => {
-	console.log(`[server] started on port ${PORT} 🚀`);
+	console.log(`[server] started on port ${PORT} 🚀 aa`);
 });
 
 server.get('/healthcheck', (request, response) => {
@@ -34,56 +34,86 @@ server.get('/info', (request, response) => {
 		- 500 Internal Server Error: Error fetching carts
 
 	- Example Request:
-	GET /cart?customerId=12345678-1234-1234-1234-123456789012
+	GET /cart?storeId=85274196310
 */
 
-server.get('/cart', async (request, response) =>  {
-
-	const { customerId } = request.query;
-	
-	if (!customerId) {
-		response.status(400).json({
-			status: 'Customer ID is required',
-		});
-		return;
-	}
-
-	if (customerId.length !== 36) {
-		response.status(400).json({
-			status: 'Customer ID must be 36 characters long',
-		});
-		return;
-	}
-	
+server.get('/cart', async (request, response) => {
 	try {
-		const findCustomer = await customerRepository.findById(customerId as string);
-		console.log('findCustomer', findCustomer);
 
-		if (!findCustomer) {
-			response.status(404).json({
-				status: 'Customer not found with this ID',
+		const { storeId } = request.query;
+
+		console.log('storeId', storeId);
+
+		if (!storeId) {
+			response.status(400).json({
+				status: 'StoreId is required',
 			});
 			return;
 		}
 
-		const databaseCarts = await cartRepository.findCartByCustomerId(customerId as string);
-	
-		if (!databaseCarts) {
-			response.status(404).json({
-				status: 'Carts not found',
-			});
-		}
-	
-		response.status(201).json({
+		const databaseCarts = await cartRepository.findByStoreId(storeId.toString());
+
+		console.log('databaseCarts', databaseCarts);
+
+		response.status(200).json({
 			status: 'Carts fetched successfully',
 			data: databaseCarts,
 		});
-	} catch (error) {
-		console.error('Error fetching carts:', error);
-		response.status(500).json({
-			status: 'Internal server error',
-			error: error,
-		});
-	}
 
-});
+		return
+
+	} catch (error) {
+		console.error('Error fetching carts:', error)
+	}
+})
+
+// server.get('/cart/:customerId', async (request, response) =>  {
+
+// 	const { customerId } = request.query;
+	
+// 	if (!customerId) {
+// 		response.status(400).json({
+// 			status: 'Customer ID is required',
+// 		});
+// 		return;
+// 	}
+
+// 	if (customerId.length !== 36) {
+// 		response.status(400).json({
+// 			status: 'Customer ID must be 36 characters long',
+// 		});
+// 		return;
+// 	}
+	
+// 	try {
+// 		const findCustomer = await customerRepository.findById(customerId as string);
+// 		console.log('findCustomer', findCustomer);
+
+// 		if (!findCustomer) {
+// 			response.status(404).json({
+// 				status: 'Customer not found with this ID',
+// 			});
+// 			return;
+// 		}
+
+// 		const databaseCarts = await cartRepository.findCartByCustomerId(customerId as string);
+	
+// 		if (!databaseCarts) {
+// 			response.status(404).json({
+// 				status: 'Carts not found',
+// 			});
+// 		}
+	
+// 		response.status(200).json({
+// 			status: 'Carts fetched successfully',
+// 			data: databaseCarts,
+// 		});
+// 	} catch (error) {
+// 		console.error('Error fetching carts:', error);
+// 		response.status(500).json({
+// 			status: 'Internal server error',
+// 			error: error,
+// 		});
+// 	}
+
+// });

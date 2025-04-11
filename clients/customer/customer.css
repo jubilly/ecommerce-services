@@ -1,0 +1,165 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    max-width: 100%;
+    background: #fafafa;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+}
+
+.header__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    padding-top: 70px;
+    justify-content: center;
+}
+
+.product {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stars svg {
+    width: 20px;
+    height: 20px;
+}
+
+.product div {
+    margin: auto;
+}
+
+.image {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #fafafa;
+    border-radius: 20px;
+}
+
+.button {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(40, 125, 30);
+    padding: 10px;
+    font-weight: 600;
+}
+
+.disabled {
+    background-color: #ccc;
+    pointer-events: none;
+}
+
+.button:hover {
+    background-color: rgb(38, 107, 31);
+}
+
+.cta__addToCart {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: purple;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+
+.open-cart-btn {
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+.modal.open {
+    right: 0;
+}
+
+.modal__content {
+    padding: 20px;
+}
+
+.modal__content h2 {
+    margin-top: 0;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.productsCart {
+    margin-top: 20px;
+}
+
+.product {
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.totalCart {
+    text-align: center;
+    margin: 10px;
+}

@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.menu {
+    width: 240px;
+    background-color: #111;
+    color: #fff;
+    padding: 30px 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu-item {
+    padding: 12px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: #333;
+}
+
+.content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.panel {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.product-form {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.product-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.product-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.product-form button {
+    grid-column: span 2;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-form button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+}
+
+.no-show {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.card+.card {
+    border-top: 1px solid;
+    margin-top: 10px;
+    padding-top: 10px;
+}

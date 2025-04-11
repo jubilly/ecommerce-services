@@ -1,4 +1,4 @@
-import { cartProductsRepository, cartRepository, customerRepository } from "~/repositories";
+import { cartProductsRepository, cartRepository, customerRepository } from "../../repositories";
 import server from "../../server";
 import { randomUUID } from "crypto";
 import { Prisma } from "@prisma/client";

@@ -139,8 +139,8 @@
           drawer.classList.remove("open");
         }
       }
-    } catch {
-      return undefined;
+    } catch (error) {
+      console.error("Erro ao conectar ao servidor:", error.message);
     }
   }
 })();

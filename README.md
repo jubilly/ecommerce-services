@@ -18,6 +18,20 @@ Serão 5 microsserviços:
 - Microsserviço de listagem de clientes: Permite que o comerciante gerencie os clientes cadastrados na loja
 - Microsserviço de cadastro de clientes: Permite que um cliente se cadastre na loja
 
+# Tecnologia
+
+Serviços backend:
+
+- NodeJS
+- Prisma ORM + Postgres
+- ExpressJs
+
+Cliente
+
+- Javascript
+- HTML
+- CSS
+
 # Como rodar?
 
 1.  Abrir o terminal na pasta raiz do projeto

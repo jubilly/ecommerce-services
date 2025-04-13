@@ -10,13 +10,12 @@
       const data = await response.json();
       return data.status === "ok";
     } catch (error) {
-      return false;
+      console.error("Erro ao conectar ao serviço de produtos:", error.message);
     }
-  }
+  };
 
   const getProducts = async () => {
     try {
-
       const isAlive = await isAliveServiceProduct();
       if (!isAlive) {
         return;
@@ -25,8 +24,8 @@
       const response = await fetch(SERVICE_PRODUCT);
       const products = await response.json();
       return products;
-    } catch {
-      return undefined;
+    } catch (error) {
+      console.error("Erro ao conectar ao servidor:", error.message);
     }
   };
 

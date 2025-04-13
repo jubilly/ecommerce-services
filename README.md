@@ -3,6 +3,7 @@
 - Disciplina: Projeto de microsserviços da disciplina Desenvolvimento de Aplicações Orientadas a Serviços (2025.1)
 - Autora: Amanda Prates Caetano
 - Curso: Especialização em desenvolviment Web 2024.2, IFBA (Vitória da Conquista)
+- Youtube: https://www.youtube.com/watch?v=jZB22WJzlFM
 
 # Descrição do projeto
 

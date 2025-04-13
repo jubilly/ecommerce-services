@@ -12,8 +12,7 @@ const info = {
 }
 
 server.listen(PORT, () => {
-	console.log('processing', process.env.DATABASE_URL)
-	console.log(`[server] started on port ${PORT} xxx 🚀`);
+	console.log(`[server] started on port ${PORT} 🚀`);
 });
 
 server.get('/healthcheck', (request, response) => {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:deploy": "npx prisma migrate deploy && npx prisma generate",
+    "db:deploy": "npx prisma generate && npx prisma migrate deploy",
     "docker:db": "docker compose up -d db_ecommerce",
     "docker:service:gp": "docker compose up -d service_get_products",
     "docker:service:cp": "docker compose up -d service_create_products",

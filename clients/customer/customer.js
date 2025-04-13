@@ -1,22 +1,13 @@
+import { isAliveGetProduct } from "./isAlive.js";
+
 (async function () {
   const BASE_URL = "http://localhost";
 
   const SERVICE_PRODUCT = `${BASE_URL}:5001/products`;
-  const SERVICE_PRODUCT_ISALIVE = `${BASE_URL}:5001/healthcheck`;
-
-  const isAliveServiceProduct = async () => {
-    try {
-      const response = await fetch(SERVICE_PRODUCT_ISALIVE);
-      const data = await response.json();
-      return data.status === "ok";
-    } catch (error) {
-      console.error("Erro ao conectar ao serviço de produtos:", error.message);
-    }
-  };
 
   const getProducts = async () => {
     try {
-      const isAlive = await isAliveServiceProduct();
+      const isAlive = await isAliveGetProduct();
       if (!isAlive) {
         return;
       }

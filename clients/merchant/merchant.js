@@ -1,42 +1,16 @@
+import {
+  isAliveCreateProduct,
+  isAliveGetCart,
+  isAliveGetCustomer,
+  isAliveGetProduct,
+} from "./isAlive.js";
+
 const BASE_URL = "http://localhost";
 
-const SERVICE_CUSTOMER_URL = `${BASE_URL}:5003/customers`;
-const SERVICE_CUSTOMER_ISALIVE_URL = `${BASE_URL}:5003/healthcheck`;
-
-const SERVICE_CART_URL = `${BASE_URL}:5005/cart`;
-const SERVICE_CART_ISALIVE_URL = `${BASE_URL}:5005/healthcheck`;
-
-const SERVICE_CREATE_CART_URL = `${BASE_URL}:5006/cart`;
-const SERVICE_CREATE_CART_ISALIVE_URL = `${BASE_URL}:5006/healthcheck`;
-
 const SERVICE_PRODUCT = `${BASE_URL}:5001/products`;
-const SERVICE_PRODUCT_ISALIVE = `${BASE_URL}:5001/healthcheck`;
-
 const SERVICE_CREATE_PRODUCT = `${BASE_URL}:5002/products`;
-const SERVICE_CREATE_PRODUCT_ISALIVE = `${BASE_URL}:5002/healthcheck`;
-
-const isAliveGetCustomer = async () => {
-  const response = await fetch(SERVICE_CUSTOMER_ISALIVE_URL);
-  const data = await response.json();
-  return data.status === "ok";
-}
-
-const isAliveGetCart = async () => {
-  const response = await fetch(SERVICE_CART_ISALIVE_URL);
-  const data = await response.json();
-  return data.status === "ok";
-}
-const isAliveGetProduct = async () => {
-  const response = await fetch(SERVICE_PRODUCT_ISALIVE);
-  const data = await response.json();
-  return data.status === "ok";
-}
-
-const isAliveCreateProduct = async () => {
-  const response = await fetch(SERVICE_CREATE_PRODUCT_ISALIVE);
-  const data = await response.json();
-  return data.status === "ok";
-}
+const SERVICE_CUSTOMER_URL = `${BASE_URL}:5003/customers`;
+const SERVICE_CART_URL = `${BASE_URL}:5005/cart`;
 
 function hideAllSections() {
   document.querySelectorAll(".panel").forEach((section) => {
@@ -49,17 +23,17 @@ function toggleSection(selector) {
   document.querySelector(selector).classList.remove("no-show");
 }
 
-function formatJson (value = "") {
-	let parsed;
-	try {
-		parsed = JSON.parse(value);
-	} catch (error) {
-		parsed = value;
-	}
-	const pretty = JSON.stringify(parsed, null, 4);
+function formatJson(value = "") {
+  let parsed;
+  try {
+    parsed = JSON.parse(value);
+  } catch (error) {
+    parsed = value;
+  }
+  const pretty = JSON.stringify(parsed, null, 4);
 
-	return pretty === "" || pretty === "{}" ? "N/A" : pretty;
-};
+  return pretty === "" || pretty === "{}" ? "N/A" : pretty;
+}
 
 function renderData(response, targetOutputSelector) {
   const container = targetOutputSelector;

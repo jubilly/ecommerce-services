@@ -1,10 +1,10 @@
+import { isAliveCreateCart, isAliveGetCustomer } from "./isAlive.js";
+
 (function () {
   const BASE_URL = "http://localhost";
 
-  const SERVICE_CUSTOMER_URL = `${BASE_URL}:5004/customers`;
-  const SERVICE_CUSTOMER_ISALIVE_URL = `${BASE_URL}:5004/healthcheck`;
+  const SERVICE_CREATE_CUSTOMER_URL = `${BASE_URL}:5004/customers`;
   const SERVICE_CART_URL = `${BASE_URL}:5006/cart`;
-  const SERVICE_CART_ISALIVE_URL = `${BASE_URL}:5006/healthcheck`;
 
   const openBtn = document.querySelector(".open-cart-btn");
   const closeBtn = document.getElementById("closeDrawer");
@@ -77,21 +77,19 @@
     };
 
     try {
-      const customerServiceIsAlive = await fetch(SERVICE_CUSTOMER_ISALIVE_URL);
-      const responseCustomerIsAlive = await customerServiceIsAlive.json();
-
-      if (responseCustomerIsAlive.status !== "ok") {
-        return {
-          message: "Serviço de criar customer indisponível",
-        };
+      const isAlive = await isAliveGetCustomer();
+      if (!isAlive) {
+        return;
       }
-      const createCustomer = await fetch(SERVICE_CUSTOMER_URL, {
+
+      const createCustomer = await fetch(SERVICE_CREATE_CUSTOMER_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(customerPayload),
       });
+
       const customer = await createCustomer.json();
 
       if (customer.status && customer.data) {
@@ -115,13 +113,9 @@
           products: parseStoragedCart.products,
         };
 
-        const cartServiceIsAlive = await fetch(SERVICE_CART_ISALIVE_URL);
-        const responseCartIsAlive = await cartServiceIsAlive.json();
-
-        if (responseCartIsAlive.status !== "ok") {
-          return {
-            message: "Serviço de criar carrinho indisponível",
-          };
+        const isAlive = await isAliveCreateCart();
+        if (!isAlive) {
+          return;
         }
 
         const createCart = await fetch(SERVICE_CART_URL, {
